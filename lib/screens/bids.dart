@@ -1,23 +1,23 @@
-import 'package:eauction/screens/add_items.dart';
-import 'package:eauction/screens/bids.dart';
 import 'package:eauction/screens/login.dart';
 import 'package:eauction/screens/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:eauction/screens/home.dart';
+import 'package:eauction/screens/add_items.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class BidsScreen extends StatefulWidget {
+  const BidsScreen({Key? key}) : super(key: key);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _BidsScreenState createState() => _BidsScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _BidsScreenState extends State<BidsScreen> {
   FirebaseAuth _auth = FirebaseAuth.instance;
-  int _currentIndex = 0;
 
-//Function to push the page based on index of list _children and Signout
+  int _currentIndex = 3;
+
+  //Function to push the page based on index of list _children and Signout
   _onTap() async {
     if (_currentIndex == 4) {
       await _auth.signOut();
@@ -32,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   //Widget List for Switching Between Different Pages
+
   final List<Widget> _children = [
     const HomeScreen(),
     const ProfileScreen(),
@@ -43,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home Page"),
+        title: const Text("Bids Page"),
         centerTitle: true,
       ),
       // body: _pageOptions[selectedPage],
@@ -90,6 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
         selectedItemColor: Colors.greenAccent,
         unselectedItemColor: Colors.white,
         onTap: (index) {
+          // this has changed
           setState(() {
             _currentIndex = index;
           });

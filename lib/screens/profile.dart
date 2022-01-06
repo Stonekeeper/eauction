@@ -1,23 +1,22 @@
 import 'package:eauction/screens/add_items.dart';
 import 'package:eauction/screens/bids.dart';
+import 'package:eauction/screens/home.dart';
 import 'package:eauction/screens/login.dart';
-import 'package:eauction/screens/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _ProfileScreenState createState() => _ProfileScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _ProfileScreenState extends State<ProfileScreen> {
   FirebaseAuth _auth = FirebaseAuth.instance;
-  int _currentIndex = 0;
+  int _currentIndex = 1;
 
-//Function to push the page based on index of list _children and Signout
+  //Function to push the page based on index of list _children and Signout
   _onTap() async {
     if (_currentIndex == 4) {
       await _auth.signOut();
@@ -43,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home Page"),
+        title: const Text("Profile Page"),
         centerTitle: true,
       ),
       // body: _pageOptions[selectedPage],
@@ -90,6 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
         selectedItemColor: Colors.greenAccent,
         unselectedItemColor: Colors.white,
         onTap: (index) {
+          // this has changed
           setState(() {
             _currentIndex = index;
           });

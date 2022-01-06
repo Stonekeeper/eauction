@@ -32,7 +32,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     final nameField = TextFormField(
       autofocus: false,
       controller: nameEditingController,
-      keyboardType: TextInputType.name,
+      keyboardType: TextInputType.text,
       validator: (value) {
         RegExp regExp = RegExp(r'^.{6,}$');
 
