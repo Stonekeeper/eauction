@@ -1,8 +1,10 @@
 import 'package:eauction/screens/add_items.dart';
 import 'package:eauction/screens/home.dart';
 import 'package:eauction/screens/login.dart';
+import 'package:eauction/screens/profile.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:eauction/screens/item_details.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

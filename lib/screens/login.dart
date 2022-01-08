@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, unnecessary_new
+
 import 'package:eauction/screens/home.dart';
 import 'package:eauction/screens/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -85,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
     //Login Button
     final loginButton = Material(
       elevation: 5,
-      borderRadius: BorderRadius.all(Radius.circular(10)),
+      borderRadius: const BorderRadius.all(Radius.circular(10)),
       color: Colors.blue,
       child: MaterialButton(
         padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
@@ -126,6 +128,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       "assets/logo.png",
                       fit: BoxFit.contain,
                     ),
+                  ),
+                  const SizedBox(height: 30),
+                  const Text(
+                    "Bidders Bazzar",
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'Race'),
                   ),
                   const SizedBox(height: 30),
                   emailField,

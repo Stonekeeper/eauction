@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, unnecessary_new
+
 import 'package:eauction/models/user_model.dart';
 import 'package:eauction/screens/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';

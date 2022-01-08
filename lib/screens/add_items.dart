@@ -1,12 +1,15 @@
+// ignore_for_file: prefer_const_constructors, unnecessary_new, unnecessary_this
+
 import 'dart:io';
 import 'dart:math';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eauction/screens/home.dart';
 import 'package:eauction/screens/login.dart';
+import 'package:eauction/screens/users_items.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:eauction/screens/profile.dart';
-import 'package:eauction/screens/bids.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -68,7 +71,7 @@ class _AddItemsScreenState extends State<AddItemsScreen> {
 
   // Redirect to Home page after adding items
   void gotoHomePage() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
       return const HomeScreen();
     }));
   }
@@ -78,7 +81,7 @@ class _AddItemsScreenState extends State<AddItemsScreen> {
     const HomeScreen(),
     const ProfileScreen(),
     const AddItemsScreen(),
-    const BidsScreen()
+    const UsersItem()
   ];
 
   //To get Current User Details
@@ -143,7 +146,7 @@ class _AddItemsScreenState extends State<AddItemsScreen> {
         builder: (BuildContext context, Widget? child) {
           return Theme(
             data: ThemeData.dark().copyWith(
-              colorScheme: ColorScheme.dark(
+              colorScheme: const ColorScheme.dark(
                 primary: Colors.deepPurple,
                 onPrimary: Colors.white,
                 surface: Colors.blueGrey,
@@ -198,7 +201,7 @@ class _AddItemsScreenState extends State<AddItemsScreen> {
     //Image Upload Button
     final addImageButton = Material(
       elevation: 5,
-      borderRadius: BorderRadius.all(Radius.circular(10)),
+      borderRadius: const BorderRadius.all(Radius.circular(10)),
       color: Colors.blue,
       child: MaterialButton(
         padding: const EdgeInsets.fromLTRB(20, 30, 20, 30),
@@ -353,6 +356,10 @@ class _AddItemsScreenState extends State<AddItemsScreen> {
 
     //Scaffold
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Add Items"),
+        centerTitle: true,
+      ),
       backgroundColor: Colors.white,
       body: Center(
           child: SingleChildScrollView(
