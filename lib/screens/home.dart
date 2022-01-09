@@ -1,6 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_new
-
-import 'package:cloud_firestore/cloud_firestore.dart';
+// ignore_for_file: prefer_const_constructors, unnecessary_new, unnecessary_this, avoid_unnecessary_containers, unused_field, non_constant_identifier_names, avoid_print, unused_local_variable
 import 'package:eauction/screens/users_items.dart';
 import 'package:eauction/screens/add_items.dart';
 import 'package:eauction/screens/login.dart';
@@ -79,11 +77,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   //For My reference to check the values retrived from DB
-  void printFirebase() {
-    postsRef.once().then((snapshot) {
-      print(snapshot.snapshot.value);
-    });
-  }
+  // void printFirebase() {
+  //   postsRef.once().then((snapshot) {
+  //     print(snapshot.snapshot.value);
+  //   });
+  // }
 
   //Redirects to the page of user posted items
   void userItems() {
@@ -92,20 +90,11 @@ class _HomeScreenState extends State<HomeScreen> {
     }));
   }
 
-  //To get Documents ID of Data
-  void getdata() async {
-    Future<DataSnapshot> id =
-        FirebaseDatabase.instance.ref().child("User").get();
-    // print("id");
-    // print(id);
-  }
-
   @override
   void initState() {
     super.initState();
     this.checkAuthentification();
     this.getUser();
-    getdata();
 
     final postRef = FirebaseDatabase.instance.ref().child("User");
 
@@ -189,12 +178,12 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  //Card To Display Items
+  //Wiget Card To Display Items
   Widget PostUI(int index, String image, String description, String date,
       String minBid, String name, String auctionID) {
     return GestureDetector(
         onTap: () {
-          Navigator.pushReplacement(
+          Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => ItemDetails(),

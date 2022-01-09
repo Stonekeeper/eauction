@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_new
+// ignore_for_file: prefer_const_constructors, unnecessary_new, unnecessary_this, avoid_unnecessary_containers, unused_field, non_constant_identifier_names, avoid_print, unused_local_variable
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eauction/models/user_model.dart';
 import 'package:eauction/screens/add_items.dart';
@@ -116,7 +116,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               width: 2.0), // Set border width
                           borderRadius: BorderRadius.all(Radius.circular(
                               10.0)), // Set rounded corner radius
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                                 blurRadius: 0,
                                 color: Colors.black,
@@ -149,7 +149,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               width: 2.0), // Set border width
                           borderRadius: BorderRadius.all(Radius.circular(
                               10.0)), // Set rounded corner radius
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                                 blurRadius: 0,
                                 color: Colors.black,
@@ -182,7 +182,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               width: 2.0), // Set border width
                           borderRadius: BorderRadius.all(Radius.circular(
                               10.0)), // Set rounded corner radius
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                                 blurRadius: 0,
                                 color: Colors.black,
@@ -215,7 +215,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               width: 2.0), // Set border width
                           borderRadius: BorderRadius.all(Radius.circular(
                               10.0)), // Set rounded corner radius
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                                 blurRadius: 0,
                                 color: Colors.black,
@@ -229,19 +229,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     )
                   ],
                 ),
-
-                // emailField,
-                // const SizedBox(height: 20),
-                // mobileField,
-                // const SizedBox(height: 20),
-                // aadharField,
-                // const SizedBox(height: 20),
-                // passwordField,
-                // const SizedBox(height: 20),
-                // confirmPasswordField,
-                // const SizedBox(height: 15),
-                // signupButton,
-                // const SizedBox(height: 15),
               ],
             ),
           ),
@@ -262,7 +249,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
         selectedItemColor: Colors.greenAccent,
         unselectedItemColor: Colors.white,
         onTap: (index) {
-          // this has changed
           setState(() {
             _currentIndex = index;
           });

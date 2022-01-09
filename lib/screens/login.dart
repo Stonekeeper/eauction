@@ -24,6 +24,23 @@ class _LoginScreenState extends State<LoginScreen> {
   //firebase instance
   final _auth = FirebaseAuth.instance;
 
+  checkAuthentification() async {
+    _auth.authStateChanges().listen((user) {
+      if (user != null) {
+        //print(user);
+
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (BuildContext context) => const HomeScreen()));
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    this.checkAuthentification();
+  }
+
   @override
   Widget build(BuildContext context) {
     //Email Field
@@ -55,7 +72,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
 
     //Password Field
-
     final passwordField = TextFormField(
       autofocus: false,
       controller: passwordController,
@@ -175,17 +191,18 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  // Login Function
-
+  // Login Function and Push Home Screen
   void signIn(String email, String password) async {
     if (_formKey.currentState!.validate()) {
       try {
+        Fluttertoast.showToast(msg: "Logging In...");
         await _auth
             .signInWithEmailAndPassword(email: email, password: password)
             .then((uid) => {
                   Fluttertoast.showToast(msg: "Login Success"),
                   Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => HomeScreen()))
+                      MaterialPageRoute(builder: (context) => HomeScreen())),
+                  Fluttertoast.showToast(msg: "Loading Items..")
                 });
       } catch (e) {
         Fluttertoast.showToast(msg: "Invalid Credentials");

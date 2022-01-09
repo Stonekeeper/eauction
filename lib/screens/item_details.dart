@@ -1,6 +1,5 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_new
+// ignore_for_file: prefer_const_constructors, unnecessary_new, unnecessary_this, avoid_unnecessary_containers, unused_field, non_constant_identifier_names, avoid_print, unused_local_variable
 
-import 'package:eauction/screens/users_items.dart';
 import 'package:eauction/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -106,6 +105,7 @@ class _ItemDetailsState extends State<ItemDetails> {
     }
   }
 
+  //To Store Bid data to DB
   void addBid(String bid) {
     final Posts todo = ModalRoute.of(context)?.settings.arguments as Posts;
     if (flag == 0) {
@@ -157,16 +157,13 @@ class _ItemDetailsState extends State<ItemDetails> {
   }
 
   void _showDialog(String txt) {
-    // flutter defined function
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        // return object of type Dialog
         return AlertDialog(
           title: Text("Sorry!"),
           content: Text(txt),
           actions: <Widget>[
-            // usually buttons at the bottom of the dialog
             TextButton(
               child: Text("Close"),
               onPressed: () {
@@ -210,12 +207,6 @@ class _ItemDetailsState extends State<ItemDetails> {
             },
             icon: Icon(Icons.home),
           ),
-          // actions: [
-          //   IconButton(
-          //     onPressed: () {},
-          //     icon: Icon(Icons.more_vert),
-          //   ),
-          // ],
         ),
         body: SingleChildScrollView(
             child: Column(children: <Widget>[
@@ -234,8 +225,6 @@ class _ItemDetailsState extends State<ItemDetails> {
                           alignment: Alignment.center,
                         ),
                       ),
-
-                      //child: Text("For",style: TextStyle(color:Colors.black,fontSize:25),),
                     ],
                   ),
                   SizedBox(
@@ -250,14 +239,12 @@ class _ItemDetailsState extends State<ItemDetails> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Row(
-                      children: <Widget>[
+                      children: const <Widget>[
                         Text(
                           "Name: ",
                           textAlign: TextAlign.start,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-
-                        //child: Text("Geeks",style: TextStyle(color:Colors.black,fontSize:25),),
                       ],
                     ),
                     Row(
@@ -267,8 +254,6 @@ class _ItemDetailsState extends State<ItemDetails> {
                           textAlign: TextAlign.center,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-
-                        //child: Text("For",style: TextStyle(color:Colors.black,fontSize:25),),
                       ],
                     ),
                     SizedBox(
@@ -284,14 +269,12 @@ class _ItemDetailsState extends State<ItemDetails> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Row(
-                      children: <Widget>[
+                      children: const <Widget>[
                         Text(
                           "Description: ",
                           textAlign: TextAlign.center,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-
-                        //child: Text("Geeks",style: TextStyle(color:Colors.black,fontSize:25),),
                       ],
                     ),
                     Row(
@@ -301,8 +284,6 @@ class _ItemDetailsState extends State<ItemDetails> {
                           textAlign: TextAlign.center,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-
-                        //child: Text("For",style: TextStyle(color:Colors.black,fontSize:25),),
                       ],
                     ),
                     SizedBox(
@@ -318,14 +299,12 @@ class _ItemDetailsState extends State<ItemDetails> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Row(
-                      children: <Widget>[
+                      children: const <Widget>[
                         Text(
                           "Minimum Bid Price: ",
                           textAlign: TextAlign.center,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-
-                        //child: Text("Geeks",style: TextStyle(color:Colors.black,fontSize:25),),
                       ],
                     ),
                     Row(
@@ -335,8 +314,6 @@ class _ItemDetailsState extends State<ItemDetails> {
                           textAlign: TextAlign.center,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-
-                        //child: Text("For",style: TextStyle(color:Colors.black,fontSize:25),),
                       ],
                     ),
                     SizedBox(
@@ -352,14 +329,12 @@ class _ItemDetailsState extends State<ItemDetails> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Row(
-                      children: <Widget>[
+                      children: const <Widget>[
                         Text(
                           "End Date: ",
                           textAlign: TextAlign.center,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-
-                        //child: Text("Geeks",style: TextStyle(color:Colors.black,fontSize:25),),
                       ],
                     ),
                     Row(
@@ -369,8 +344,6 @@ class _ItemDetailsState extends State<ItemDetails> {
                           textAlign: TextAlign.center,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-
-                        //child: Text("For",style: TextStyle(color:Colors.black,fontSize:25),),
                       ],
                     ),
                     SizedBox(
@@ -434,14 +407,12 @@ class _ItemDetailsState extends State<ItemDetails> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   Row(
-                    children: <Widget>[
+                    children: const <Widget>[
                       Text(
                         "Bid Winner :",
                         textAlign: TextAlign.center,
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-
-                      //child: Text("Geeks",style: TextStyle(color:Colors.black,fontSize:25),),
                     ],
                   ),
                   Row(
@@ -455,8 +426,6 @@ class _ItemDetailsState extends State<ItemDetails> {
                                 fontSize: 20,
                                 backgroundColor: Colors.red)),
                       ),
-
-                      //child: Text("For",style: TextStyle(color:Colors.black,fontSize:25),),
                     ],
                   ),
                   SizedBox(

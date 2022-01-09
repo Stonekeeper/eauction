@@ -1,8 +1,7 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_new, unnecessary_this
+// ignore_for_file: prefer_const_constructors, unnecessary_new, unnecessary_this, avoid_unnecessary_containers, unused_field, non_constant_identifier_names
 
 import 'dart:io';
 import 'dart:math';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eauction/screens/home.dart';
 import 'package:eauction/screens/login.dart';
 import 'package:eauction/screens/users_items.dart';
@@ -25,18 +24,21 @@ class AddItemsScreen extends StatefulWidget {
 
 class _AddItemsScreenState extends State<AddItemsScreen> {
   //FireBase Auth Instance
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final Future<FirebaseApp> _future = Firebase.initializeApp();
 
   //Fire Base Real Time Database Instance
   final databaseRef = FirebaseDatabase.instance.ref().child("User");
   //User Variable
   User? user;
+  // To check wheather user has logged in or not
   bool isloggedin = false;
 
   //To Highlight The Logo
   int _currentIndex = 2;
+  //To Store the image
   File? sampleImage;
+  //To Store Date
   DateTime? _selectedDate;
 
   // Validate Form
@@ -62,16 +64,17 @@ class _AddItemsScreenState extends State<AddItemsScreen> {
     }
   }
 
-  // Generate Random Numbers
+  // Generate Random ID for Auction ID
   String randomID() {
     var r = Random();
     return String.fromCharCodes(
         List.generate(7, (index) => r.nextInt(33) + 89));
   }
 
-  // Redirect to Home page after adding items
+  // Redirect to Home page after adding an item
   void gotoHomePage() {
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+      Fluttertoast.showToast(msg: "Item added successfully");
       return const HomeScreen();
     }));
   }
@@ -125,7 +128,7 @@ class _AddItemsScreenState extends State<AddItemsScreen> {
     });
   }
 
-  //To view Uploaded Image in the Add items Screen
+  //To view  Image in the Add items Screen
   Widget enableUpload() {
     return Container(
       child: Column(
@@ -179,7 +182,7 @@ class _AddItemsScreenState extends State<AddItemsScreen> {
         UploadTask uploadTask = firebaseStorageRef.putFile(sampleImage);
         TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() => null);
         String url = (await taskSnapshot.ref.getDownloadURL());
-        print('URL Is $url');
+        //print('URL Is $url');
         databaseRef.push().set({
           'Name': name,
           'Description': des,
@@ -228,7 +231,7 @@ class _AddItemsScreenState extends State<AddItemsScreen> {
       keyboardType: TextInputType.text,
       validator: (value) {
         if (value!.isEmpty) {
-          return ("Please Enter Title of Project");
+          return ("Please Enter Title");
         }
         if (!RegExp("^[a-zA-Z]+").hasMatch(value)) {
           return ("Please enter valid Title");
@@ -335,6 +338,8 @@ class _AddItemsScreenState extends State<AddItemsScreen> {
         padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
         onPressed: () {
+          Fluttertoast.showToast(msg: "Adding item please wait..");
+          Fluttertoast.showToast(msg: "Don't click again");
           addData(
               sampleImage!,
               titleEditingController.text,
@@ -357,7 +362,7 @@ class _AddItemsScreenState extends State<AddItemsScreen> {
     //Scaffold
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Items"),
+        title: Text("Add Item"),
         centerTitle: true,
       ),
       backgroundColor: Colors.white,

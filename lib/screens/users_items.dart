@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_new
 
+import 'package:eauction/screens/add_items.dart';
 import 'package:eauction/screens/home.dart';
 import 'package:eauction/screens/item_details.dart';
+import 'package:eauction/screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -27,6 +29,29 @@ class _UsersItemState extends State<UsersItem> {
 
   bool isloggedin = false;
   final Future<FirebaseApp> _future = Firebase.initializeApp();
+
+  //To Highlight The Logo
+  int _currentIndex = 3;
+
+  //Widget List for Switching Between Different Pages
+  final List<Widget> _children = [
+    const HomeScreen(),
+    const ProfileScreen(),
+    const AddItemsScreen(),
+    const UsersItem()
+  ];
+
+  //Function to push the page based on index of list _children and Signout
+  _onTap() async {
+    if (_currentIndex == 4) {
+      await _auth.signOut();
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (BuildContext context) => const LoginScreen()));
+    } else {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (BuildContext context) => _children[_currentIndex]));
+    }
+  }
 
   checkAuthentification() async {
     _auth.authStateChanges().listen((user) {
@@ -120,6 +145,27 @@ class _UsersItemState extends State<UsersItem> {
                       postsList[index].AuctionID);
                 }),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.add_circle_outline_outlined), label: "Sell"),
+          BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: "Bids"),
+          BottomNavigationBarItem(icon: Icon(Icons.logout), label: "Logout"),
+        ],
+        currentIndex: _currentIndex,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.blue,
+        selectedItemColor: Colors.greenAccent,
+        unselectedItemColor: Colors.white,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+          _onTap();
+        },
+      ),
     );
   }
 
@@ -127,7 +173,7 @@ class _UsersItemState extends State<UsersItem> {
       String minBid, String name, String auctionID) {
     return new GestureDetector(
         onTap: () {
-          Navigator.pushReplacement(
+          Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => ItemDetails(),
