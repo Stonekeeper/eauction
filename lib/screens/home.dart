@@ -19,6 +19,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  //Instance of Posts Class to store item details
   List<Posts> postsList = [];
 
   final FirebaseAuth _auth = FirebaseAuth.instance;

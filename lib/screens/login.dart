@@ -24,6 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
   //firebase instance
   final _auth = FirebaseAuth.instance;
 
+  //Check Auth Status if not logged in go to Home
   checkAuthentification() async {
     _auth.authStateChanges().listen((user) {
       if (user != null) {
@@ -206,8 +207,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 });
       } catch (e) {
         Fluttertoast.showToast(msg: "Invalid Credentials");
-        // .catchError((e) {
-        //Fluttertoast.showToast(msg: e!.messeage);
       }
     }
   }

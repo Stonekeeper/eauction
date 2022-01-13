@@ -156,6 +156,7 @@ class _ItemDetailsState extends State<ItemDetails> {
     }));
   }
 
+  //Pop up for entering invalid bid
   void _showDialog(String txt) {
     showDialog(
       context: context,
@@ -176,8 +177,8 @@ class _ItemDetailsState extends State<ItemDetails> {
     );
   }
 
+  //To convert String into number used while placing bid
   bool isNumber(String string) {
-    // Null or empty string is not a number
     if (string == null || string.isEmpty) {
       return false;
     }
@@ -194,6 +195,7 @@ class _ItemDetailsState extends State<ItemDetails> {
     final Posts todo = ModalRoute.of(context)?.settings.arguments as Posts;
     return Scaffold(
         resizeToAvoidBottomInset: false,
+        //App Bar
         appBar: AppBar(
           centerTitle: true,
           title: Text('Item Details'),
@@ -210,6 +212,7 @@ class _ItemDetailsState extends State<ItemDetails> {
         ),
         body: SingleChildScrollView(
             child: Column(children: <Widget>[
+          //Display Image
           Container(
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -232,6 +235,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                   ),
                 ]),
           ),
+          //Display Name
           Container(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
@@ -262,6 +266,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                   ]),
             ),
           ),
+          //Display Desc
           Container(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
@@ -292,6 +297,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                   ]),
             ),
           ),
+          //Display min Bid amount
           Container(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
@@ -322,6 +328,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                   ]),
             ),
           ),
+          //Display End Date
           Container(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
@@ -352,6 +359,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                   ]),
             ),
           ),
+          //Amount Field
           Container(
               child: Column(children: <Widget>[
             Padding(
@@ -371,6 +379,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                   )),
             ),
             SizedBox(height: 10.0),
+            //Place bid button
             Center(
               child: Padding(
                 padding: EdgeInsets.fromLTRB(30, 0, 30, 5),
@@ -402,6 +411,7 @@ class _ItemDetailsState extends State<ItemDetails> {
               ),
             ),
           ])),
+          //Display Bid winner
           Container(
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -451,6 +461,7 @@ class _ItemDetailsState extends State<ItemDetails> {
         ])));
   }
 
+  //Custom widget to display bidders list
   Widget PostUI(String auctionID, String User_name, String bid) {
     return new Container(
         child: Card(

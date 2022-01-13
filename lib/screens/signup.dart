@@ -291,6 +291,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 
+  //Firebase predefine Signup Function
   void signUp(String email, String password) async {
     if (_formKey.currentState!.validate()) {
       await _auth
@@ -302,13 +303,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     }
   }
 
+  //Stores all user details in firestore DB
   postDetailsToFirestore() async {
     //calling firestore
-    //calling usermodel
-    //sending data
     FirebaseFirestore firestoreFirebase = FirebaseFirestore.instance;
     User? user = _auth.currentUser;
 
+    //calling usermodel
     UserModel userModel = UserModel();
 
     //writing all the values
@@ -318,6 +319,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     userModel.mobileno = mobileEditingController.text;
     userModel.aadharid = aadharEditingController.text;
 
+    //sending data
     await firestoreFirebase
         .collection("users")
         .doc(user.uid)
