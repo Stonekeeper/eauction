@@ -4,7 +4,7 @@ A new Flutter project.
 
 ## Getting Started
 
-1. Downlad and insatll Flutter in your machine. https://flutter.dev/
+1. Downlad and install Flutter in your machine. https://flutter.dev/
 
 This project is a starting point for a Flutter application.
 
